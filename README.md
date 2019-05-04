@@ -158,16 +158,15 @@ sudo service apache2 reload
 - [Getting Flask to use Python3 (Apache/mod_wsgi)](https://stackoverflow.com/questions/30642894/getting-flask-to-use-python3-apache-mod-wsgi)
 - [Run mod_wsgi with virtualenv or Python with version different that system default](https://stackoverflow.com/questions/27450998/run-mod-wsgi-with-virtualenv-or-python-with-version-different-that-system-defaul)
 
+
 ### Step 12: Autenticar o Login através do Google
 Ir em [Google Cloud Plateform](https://console.cloud.google.com/).
 Clique em APIs & services no menu esquerdo.
 Clique em Credentials.
-Crie um OAuth Client ID (na tab Credentials), e coloque 
-
-http://3.215.229.252 e http://projetoudacity.tk e www.projetoudacity.tk como origens Javascript autorizadas.
-Coloque http://projetoudacity.tk/gCallback e http://www.projetoudacity.tk/gCallback como URI de redirecionamento autorizadas.
-Faça o download do arquivo JSON, abra e copie o valor do CLIENT_ID e do CLIENT_SECRET.
+Crie um OAuth Client ID (na tab Credentials), e coloque http://3.215.229.252 e http://projetoudacity.tk e www.projetoudacity.tk como origens Javascript autorizadas.
+Coloque http://projetoudacity.tk/gCallback e http://www.projetoudacity.tk/gCallback como URI de redirecionamento autorizadas. Faça o download do arquivo JSON, abra e copie o valor do CLIENT_ID e do CLIENT_SECRET.
 Esses valores vão ser usados para gerar as variáveis de ambiente usadas na aplicação.
+
 
 ### Step 13: Criar arquivo  .flaskenv
 Esse arquivo contem as variáveis de ambiente.
