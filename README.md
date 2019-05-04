@@ -159,7 +159,7 @@ sudo service apache2 reload
 - [Run mod_wsgi with virtualenv or Python with version different that system default](https://stackoverflow.com/questions/27450998/run-mod-wsgi-with-virtualenv-or-python-with-version-different-that-system-defaul)
 
 ### Step 12: Autenticar o Login através do Google
-Ir em (Google Cloud Plateform)[https://console.cloud.google.com/].
+Ir em [Google Cloud Plateform](https://console.cloud.google.com/).
 Clique em APIs & services no menu esquerdo.
 Clique em Credentials.
 Crie um OAuth Client ID (na tab Credentials), e coloque 
