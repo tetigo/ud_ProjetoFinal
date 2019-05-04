@@ -167,6 +167,10 @@ Crie um OAuth Client ID (na tab Credentials), e coloque http://3.215.229.252 e h
 Coloque http://projetoudacity.tk/gCallback e http://www.projetoudacity.tk/gCallback como URI de redirecionamento autorizadas. Faça o download do arquivo JSON, abra e copie o valor do CLIENT_ID e do CLIENT_SECRET.
 Esses valores vão ser usados para gerar as variáveis de ambiente usadas na aplicação.
 
+**Resources**
+- [Google Authentication with Python and Flask](https://www.mattbutton.com/2019/01/05/google-authentication-with-python-and-flask/)
+- [Add Google Oauth2 login in your flask web app](https://medium.com/@bittu/add-google-oauth2-login-in-your-flask-web-app-9f455695341e)
+
 
 ### Step 13: Criar arquivo  .flaskenv
 Esse arquivo contem as variáveis de ambiente.
