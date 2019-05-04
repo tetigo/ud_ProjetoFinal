@@ -158,7 +158,18 @@ sudo service apache2 reload
 - [Getting Flask to use Python3 (Apache/mod_wsgi)](https://stackoverflow.com/questions/30642894/getting-flask-to-use-python3-apache-mod-wsgi)
 - [Run mod_wsgi with virtualenv or Python with version different that system default](https://stackoverflow.com/questions/27450998/run-mod-wsgi-with-virtualenv-or-python-with-version-different-that-system-defaul)
 
-### Step 12: Criar arquivo  .flaskenv
+### Step 12: Autenticar o Login através do Google
+Ir em (Google Cloud Plateform)[https://console.cloud.google.com/].
+Clique em APIs & services no menu esquerdo.
+Clique em Credentials.
+Crie um OAuth Client ID (na tab Credentials), e coloque 
+
+http://3.215.229.252 e http://projetoudacity.tk e www.projetoudacity.tk como origens Javascript autorizadas.
+Coloque http://projetoudacity.tk/gCallback e http://www.projetoudacity.tk/gCallback como URI de redirecionamento autorizadas.
+Faça o download do arquivo JSON, abra e copie o valor do CLIENT_ID e do CLIENT_SECRET.
+Esses valores vão ser usados para gerar as variáveis de ambiente usadas na aplicação.
+
+### Step 13: Criar arquivo  .flaskenv
 Esse arquivo contem as variáveis de ambiente.
 Dentro do mesmo diretório myApp, execute:
 `sudo nano .flaskenv`
@@ -172,7 +183,7 @@ SECRET_KEY='SuperChaveSecreta'
 Testei algumas vezes e não sei por qual motivo, às vezes não carregava essas variáveis com a biblioteca `dotenv`.
 Verifique com o comando `env` se essas variaveis se encontram entre as variaveis de ambiente. Caso negativo, edite o arquivo `config.py` e carregue as variaveis com os respectivas valores. Para isso, comente as respectivas linhas do arquivo `config.py` e cole as linhas mostradas acima dentro do arquivo.
 
-### Step 13: Instalando Banco de Dados
+### Step 14: Instalando Banco de Dados
 No terminal execute:
 ```
 sudo apt-get install postgresql
@@ -210,7 +221,7 @@ exit
 Agora precisamos atualizar a conexão do nosso programa que está atualmente apontando para um banco sqlite e agora queremos que ele aponte para um banco postgresql.
 No programa `super.py` substitua `sqlite://banco.sqlite3` por `postgresql://catalog:catalog@localhost/catalog` 
 
-### Step 14: Inicializando o Banco de Dados
+### Step 15: Inicializando o Banco de Dados
 Execute no terminal:
 ```
 sudo apt-get install python3-psycopg2
@@ -223,13 +234,13 @@ Com os comandos acima, instalamos biblioteca psycopg2 para conseguir rodar o Mig
 Executamos os 3 comandos do Migrate para gerar as tabelas automaticamente.
 Carregamos o banco com dados iniciais.
 
-### Step 15: Criar IP Estático no Servidor
+### Step 16: Criar IP Estático no Servidor
 Isso serve para que o endereço IP do servidor não mude a cada vez que inicializamos o servidor.
 Assim podemos usar esse IP estático para atrelar a um endereço de domínio externo para facilitar a navegação até nossa aplicação e também para integrar com a plataforma Google.
 Para isso, na página do Lightsail clique em:
 Home, depois Network, depois no botão criar IP Estático.
 
-### Step 16: Criar Nome de Domínio 
+### Step 17: Criar Nome de Domínio 
 criar nome dominio em Freenom pois é gratis.
 Também é auto-explicativo, muito fácil.
 https://www.freenom.com/pt/index.html?lang=pt
@@ -237,7 +248,8 @@ https://www.freenom.com/pt/index.html?lang=pt
 No site freenom, vc deve atrelar o nome de domínio que vc escolheu a um endereço de DNS. Esse endereço é o IP estático criado no Step 14 acima.
 Isso vai facilitar nossa vida na hora de integrar a aplicação com a plataforma Google, especialmente na hora de colocar endereço de Callback.
 
-### Step 17: Alterar Portas
+
+### Step 18: Alterar Portas
 Mudar porta 22 para 2200
 ```
 sudo nano /etc/ssh/sshd_config
@@ -247,7 +259,7 @@ Salve e saia usando CTRL+X e confirme com Y.
 Restart SSH: 
 `sudo service ssh restart`
 
-### Step 18: Configurando Firewall
+### Step 19: Configurando Firewall
 Configure o firewall default do Ubuntu para somente permitir conexões para SSH (port 2200), HTTP (port 80), and NTP (port 123).
 Execute os comandos no terminal:
 ```
@@ -284,7 +296,7 @@ Então clicar em Networking e mudar as configurações do firewall para bater co
 Permitir portas 80(TCP), 123(UDP), and 2200(TCP), e negar a porta padrão 22.
 
 
-### Step 19: Usar Fail2Ban para banir atacantes
+### Step 20: Usar Fail2Ban para banir atacantes
 Software que protege contra ataques de força-bruta.
 Executar no terminal:
 `sudo apt-get install fail2ban`
@@ -302,7 +314,7 @@ Restart o serviço:
 sudo service fail2ban restart
 ```
 
-### Step 20: Instalar Updates Automaticamente
+### Step 21: Instalar Updates Automaticamente
 Execute:
 `sudo apt-get install unattended-upgrades`
 
@@ -321,7 +333,7 @@ Habilite:
 Restart Apache: 
 `sudo service apache2 restart`
 
-### Step 21: Update dos pacotes para versões recentes
+### Step 22: Update dos pacotes para versões recentes
 ```
 sudo apt-get update
 sudo apt-get dist-upgrade
@@ -330,7 +342,7 @@ sudo shutdown -r now
 conectar novamente substituindo ip e xx.pem: 
 `ssh ubuntu@ip -i xx.pem -p 2200`
 
-### Step 22: Cirar novo usuário chamado  grader
+### Step 23: Cirar novo usuário chamado  grader
 
 Enquanto logado como ubuntu, execute:
 `sudo adduser grader`
@@ -346,14 +358,14 @@ grader   ALL=(ALL:ALL) ALL
 Salvar e sair.
 
 
-### Step 23: Criar nova key
+### Step 24: Criar nova key
 Na maquina local rodar:
 `ssh-keygen` dentro de pasta .ssh criada dentro do seu usuario.
 Dar um nome para o arquivo de senha.
 Vão ser criados 2 arquivos sendo um sem extensao e um .pub
 rodar `cat arq.pub` e copiar conteudo.
 
-### Step 24: Configurar .ssh de grader
+### Step 25: Configurar .ssh de grader
 logar novamente no servidor com ubuntu .....
 entrar no usuario grader:
 `su - grader`
@@ -380,7 +392,7 @@ Na máquina local rodar:
 `ssh grader@3.215.229.252 -i ~/.ssh/grader_key -p 2200`
 Agora vc está logado com o usuário grader.
 
-### Step 25: Configurar o Timezone Local para UTC
+### Step 26: Configurar o Timezone Local para UTC
 Enquanto logado como `grader`, configure o TimeZone:
 `sudo dpkg-reconfigure tzdata` 
 Selecione none of the above
@@ -388,7 +400,7 @@ Selecione UTC
 **References**
 - Ubuntu Wiki, [UbuntuTime](https://help.ubuntu.com/community/UbuntuTime)
 
-### Step 26: Últimas Atualizações 
+### Step 27: Últimas Atualizações 
 ```
 sudo apt-get update
 sudo apt-get upgrade
