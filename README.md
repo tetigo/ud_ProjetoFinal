@@ -260,7 +260,9 @@ sudo nano /etc/ssh/sshd_config
 Mude a pora de 22 para 2200 na linha 5.
 Procure pela linha PermitRootLogin e verifique que está configurada com `no`.
 Se não estiver, configure assim:
-`PermitRootLogin no`
+```
+PermitRootLogin no
+```
 Salve e saia usando CTRL+X e confirme com Y.
 Restart SSH: 
 `sudo service ssh restart`
